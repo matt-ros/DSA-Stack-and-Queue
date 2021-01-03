@@ -236,4 +236,27 @@ danceQueue.enqueue('F Madonna');
 danceQueue.enqueue('M David');
 danceQueue.enqueue('M Christopher');
 danceQueue.enqueue('F Beyonce');
-console.log(squareDance(danceQueue));
+// console.log(squareDance(danceQueue));
+
+function ophidianBank(queue) {
+  let nextCustomer = queue.dequeue();
+  while (nextCustomer !== null) {
+    console.log(`Now serving Customer ${nextCustomer}...`)
+    let paperworkStatus = Math.floor(Math.random() * 4);
+    if (paperworkStatus === 0) {
+      console.log(`Paperwork incorrect, Customer ${nextCustomer} to the back of the line!`);
+      queue.enqueue(nextCustomer);
+    }
+    else {
+      console.log(`Paperwork in order, Customer ${nextCustomer} has been served!`);
+    }
+    nextCustomer = queue.dequeue();
+  }
+  console.log('All customers have been served!');
+}
+
+const bankQueue = new Queue();
+for (let i = 1; i <= 10; i++) {
+  bankQueue.enqueue(i);
+}
+ophidianBank(bankQueue);
